@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse,HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound
+from django.urls import reverse
 
 books = {
     "harry-potter": {"title": "Harry Potter", "author": "J.K. Rowling", "rating": 9},
@@ -14,11 +15,13 @@ books = {
 
 # Create your views here.
 def allBooks(request):
-    booksListing = ''
+    booksListing = ""
     for key in books:
-        booksListing+=f"<li>{key}</li>"
+        booksListing += f"<li><a href='{reverse('book-page',args=[key])}'>{key}</li>"
     return HttpResponse(f"<ul>{booksListing}</ul>")
-def book(request,book):
+
+
+def book(request, book):
     try:
         return HttpResponse(f"{books[book]}")
     except:

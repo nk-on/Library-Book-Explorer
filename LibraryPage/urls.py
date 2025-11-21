@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import allBooks,book
 urlpatterns = [
-    path('',allBooks),
-    path('<str:book>',book)
+    path('',allBooks,name='book-page'),
+    path('<str:book>',book,name='book-page')
 ]
