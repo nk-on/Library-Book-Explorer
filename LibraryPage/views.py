@@ -16,13 +16,18 @@ books = {
 # Create your views here.
 def allBooks(request):
     booksListing = ""
-    for key in books:
-        booksListing += f"<li><a href='{reverse('book-page',args=[key])}'>{key}</li>"
-    return HttpResponse(f"<ul>{booksListing}</ul>")
+    bookTitles = list(books.keys())
+    context = {
+        "bookTitles":bookTitles,
+    }
+    return render(request,'LibraryPage/LibraryPage.html',context)
 
 
 def book(request, book):
+    titles = list(books[book].keys())
     try:
-        return HttpResponse(f"{books[book]}")
+        individualBook = books[book]
+        context = {"book":individualBook,"titles":titles}
+        return render(request,'LibraryPage/BookPage.html',context)
     except:
-        return HttpResponseNotFound("<h1>404 Not found</h1>")
+        return render('<h2>404 not found</h2>')
