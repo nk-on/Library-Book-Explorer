@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block title %}Library Book explorer{% endblock %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <h1>Welcome To individual book page</h1>
-    <ul>
-        {% for key, value in book.items %}
-         <li>{{key}}: <span>{{value}}</span></li>
-        {% endfor %}
-    </ul>
-</body>
-
-</html>
+<h1>Welcome To individual book page</h1>
+<ul>
+    {% for key, value in book.items %}
+    <li>{{key}}: <span>{{value}}</span></li>
+    {% endfor %}
+</ul>
+{% endblock %}
